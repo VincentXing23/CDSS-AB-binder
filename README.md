@@ -7,7 +7,10 @@ analysis and verification workflow. It does not reproduce clinical pilot results
 
 ## Run in Binder
 
-Open `demo.ipynb` and choose **Run → Run All Cells**. The notebook runs the
+[**Launch the verified example in Binder**](https://mybinder.org/v2/gh/VincentXing23/CDSS-AB-binder/44bd860f7774ae440e859f1ac0feae7036120d13?urlpath=lab/tree/demo.ipynb)
+
+Wait until the bottom status bar shows **Python 3 (ipykernel) | Idle**. Open
+`demo.ipynb` and choose **Run → Run All Cells**. The notebook runs the
 analysis twice, checks the results, displays the condition totals and offers a
 ZIP download. Expected results are **12 responses, 8 correct answers and
 3 answer revisions**: T0 = 2/4, T1 = 4/4, T2 = 2/4.
@@ -16,9 +19,13 @@ Binder provides temporary sessions. Download the ZIP before leaving; session
 files are not permanent storage. The initial image build can take several
 minutes. This demo needs no API key, model download or GPU.
 
-The Binder launch URL will be pinned to the published repository's full commit
-SHA after the first successful online build. Until that build is verified, this
-package is a prepared local demo, not an established online capsule.
+The launch URL is pinned to commit
+`44bd860f7774ae440e859f1ac0feae7036120d13`. It was successfully built and run on
+Binder on 2026-11-03 (UTC), with Python 3.12.12, NumPy 2.2.6 and SQLite 3.50.4
+on Linux x86_64. Both 22-file runs passed verification; the downloaded ZIP
+contained both runs plus their log (45 files), with matching expected totals.
+The pinned revision's README predates this online validation note; the analysis
+code, references, notebook and Binder configuration have not changed.
 
 ## Run locally
 
@@ -75,6 +82,7 @@ drafts or upstream Git history. The software retains its MIT license.
 
 打开 `demo.ipynb`，点击 **Run → Run All Cells**，即可运行两轮合成数据分析并校验、
 查看分组结果、下载结果压缩包。预期为 12 条作答、8 条正确、3 次改答。
+进入后请等底部 Python 内核状态显示 Idle，再运行全部单元。
 Binder 会话是临时的，离开前请下载结果。该示例验证软件复现流程，不复现真实临床试点。
 
 ## Platform documentation
