@@ -1,0 +1,17 @@
+{
+  "source_repository": "dtn-dtn/SAIRI-CDSS",
+  "source_commit": "149f7ad4e33f71ae3f5a6e95719b6430511664fd",
+  "scope": "Unmodified synthetic inputs and analysis scripts; no upstream history or participant data.",
+  "copied_file_sha256": {
+    "LICENSE": "9d6f0cd495297bf5c51a0c9f72e89dbe2ff3f5382b50e3c8bcc2e20b34cbfb51",
+    "requirements.lock": "22ff8368be77f242565643f2df83236be915b81d7ed2a0206cf35947a31b8b83",
+    "reproduce.sh": "ed57da1a83e9468a0a8ea8ca870cef119ffaf7f0378a6f2d52d49ab41dcc089b",
+    "cdss-ab/scripts/analyze_real_doctor_collection.py": "494d7e9ffcfa28e9ec1f44e5952b8f69a92db4c44adc70531101fa531de2fa89",
+    "cdss-ab/scripts/build_doctor_app_sqlite.py": "9822d3740e02b916e841f39e36edd1bdbc7709e1539a944a54352b3237cef656",
+    "cdss-ab/scripts/reproduce_snapshot.py": "be7928e2e88ce4c89b4e9aad7f0aa89daca894c0bde640ff35d2eb028cdc7084",
+    "cdss-ab/examples/reproducibility/reference-sha256.json": "d54070e444fcf59324b4504e278966d37a69a28005d5fdcd2d12fdb2ac0f6357",
+    "cdss-ab/examples/reproducibility/snapshot/study.json": "2d6c4c7de64ac289f4bc5c11c7b727256287475c299028e3af46ed95b9c73e7b",
+    "cdss-ab/examples/reproducibility/snapshot/responses.json": "2bf6acf06af790e4c262ebf3cc8c841b41852d14db8d89e3aa2ab895024263a3",
+    "cdss-ab/examples/reproducibility/snapshot/answer_source.csv": "0504bb15f30ec66df6f990b805f5e86f80f1f8ae5595f0f619cc4d22c45a14eb"
+  }
+}

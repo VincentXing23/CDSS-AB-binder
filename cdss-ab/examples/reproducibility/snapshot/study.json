@@ -1,0 +1,333 @@
+{
+  "study_id": "synthetic-reproducibility",
+  "batch_id": "synthetic-reproducibility",
+  "source_dataset": "Synthetic arithmetic only; no MedQA or participant data",
+  "doctors": [
+    {
+      "doctor_id": "SYN1",
+      "doctor_level": "senior"
+    },
+    {
+      "doctor_id": "SYN2",
+      "doctor_level": "senior"
+    },
+    {
+      "doctor_id": "SYN3",
+      "doctor_level": "senior"
+    }
+  ],
+  "assignments": [
+    {
+      "assignment_id": "SYN2-Q1",
+      "doctor_id": "SYN2",
+      "doctor_level": "senior",
+      "question_id": "1",
+      "difficulty": "synthetic",
+      "condition": "T0",
+      "stage_block": "baseline",
+      "display_order": 1,
+      "block_order": 1,
+      "session_id": "SYN2-session",
+      "question": {
+        "question_id": "1",
+        "question": "Synthetic arithmetic: 1 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "2",
+          "B": "3",
+          "C": "4",
+          "D": "5"
+        }
+      },
+      "cdss": null
+    },
+    {
+      "assignment_id": "SYN3-Q1",
+      "doctor_id": "SYN3",
+      "doctor_level": "senior",
+      "question_id": "1",
+      "difficulty": "synthetic",
+      "condition": "T1",
+      "stage_block": "cdss_advice",
+      "display_order": 1,
+      "block_order": 1,
+      "session_id": "SYN3-session",
+      "question": {
+        "question_id": "1",
+        "question": "Synthetic arithmetic: 1 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "2",
+          "B": "3",
+          "C": "4",
+          "D": "5"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "A",
+        "advice_text": "Synthetic suggestion: A"
+      }
+    },
+    {
+      "assignment_id": "SYN1-Q1",
+      "doctor_id": "SYN1",
+      "doctor_level": "senior",
+      "question_id": "1",
+      "difficulty": "synthetic",
+      "condition": "T2",
+      "stage_block": "cdss_advice",
+      "display_order": 1,
+      "block_order": 1,
+      "session_id": "SYN1-session",
+      "question": {
+        "question_id": "1",
+        "question": "Synthetic arithmetic: 1 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "2",
+          "B": "3",
+          "C": "4",
+          "D": "5"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "B",
+        "advice_text": "Synthetic suggestion: B"
+      }
+    },
+    {
+      "assignment_id": "SYN3-Q2",
+      "doctor_id": "SYN3",
+      "doctor_level": "senior",
+      "question_id": "2",
+      "difficulty": "synthetic",
+      "condition": "T0",
+      "stage_block": "baseline",
+      "display_order": 2,
+      "block_order": 2,
+      "session_id": "SYN3-session",
+      "question": {
+        "question_id": "2",
+        "question": "Synthetic arithmetic: 2 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "3",
+          "B": "4",
+          "C": "5",
+          "D": "6"
+        }
+      },
+      "cdss": null
+    },
+    {
+      "assignment_id": "SYN1-Q2",
+      "doctor_id": "SYN1",
+      "doctor_level": "senior",
+      "question_id": "2",
+      "difficulty": "synthetic",
+      "condition": "T1",
+      "stage_block": "cdss_advice",
+      "display_order": 2,
+      "block_order": 2,
+      "session_id": "SYN1-session",
+      "question": {
+        "question_id": "2",
+        "question": "Synthetic arithmetic: 2 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "3",
+          "B": "4",
+          "C": "5",
+          "D": "6"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "A",
+        "advice_text": "Synthetic suggestion: A"
+      }
+    },
+    {
+      "assignment_id": "SYN2-Q2",
+      "doctor_id": "SYN2",
+      "doctor_level": "senior",
+      "question_id": "2",
+      "difficulty": "synthetic",
+      "condition": "T2",
+      "stage_block": "cdss_advice",
+      "display_order": 2,
+      "block_order": 2,
+      "session_id": "SYN2-session",
+      "question": {
+        "question_id": "2",
+        "question": "Synthetic arithmetic: 2 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "3",
+          "B": "4",
+          "C": "5",
+          "D": "6"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "B",
+        "advice_text": "Synthetic suggestion: B"
+      }
+    },
+    {
+      "assignment_id": "SYN1-Q3",
+      "doctor_id": "SYN1",
+      "doctor_level": "senior",
+      "question_id": "3",
+      "difficulty": "synthetic",
+      "condition": "T0",
+      "stage_block": "baseline",
+      "display_order": 3,
+      "block_order": 3,
+      "session_id": "SYN1-session",
+      "question": {
+        "question_id": "3",
+        "question": "Synthetic arithmetic: 3 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "4",
+          "B": "5",
+          "C": "6",
+          "D": "7"
+        }
+      },
+      "cdss": null
+    },
+    {
+      "assignment_id": "SYN2-Q3",
+      "doctor_id": "SYN2",
+      "doctor_level": "senior",
+      "question_id": "3",
+      "difficulty": "synthetic",
+      "condition": "T1",
+      "stage_block": "cdss_advice",
+      "display_order": 3,
+      "block_order": 3,
+      "session_id": "SYN2-session",
+      "question": {
+        "question_id": "3",
+        "question": "Synthetic arithmetic: 3 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "4",
+          "B": "5",
+          "C": "6",
+          "D": "7"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "A",
+        "advice_text": "Synthetic suggestion: A"
+      }
+    },
+    {
+      "assignment_id": "SYN3-Q3",
+      "doctor_id": "SYN3",
+      "doctor_level": "senior",
+      "question_id": "3",
+      "difficulty": "synthetic",
+      "condition": "T2",
+      "stage_block": "cdss_advice",
+      "display_order": 3,
+      "block_order": 3,
+      "session_id": "SYN3-session",
+      "question": {
+        "question_id": "3",
+        "question": "Synthetic arithmetic: 3 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "4",
+          "B": "5",
+          "C": "6",
+          "D": "7"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "B",
+        "advice_text": "Synthetic suggestion: B"
+      }
+    },
+    {
+      "assignment_id": "SYN2-Q4",
+      "doctor_id": "SYN2",
+      "doctor_level": "senior",
+      "question_id": "4",
+      "difficulty": "synthetic",
+      "condition": "T0",
+      "stage_block": "baseline",
+      "display_order": 4,
+      "block_order": 4,
+      "session_id": "SYN2-session",
+      "question": {
+        "question_id": "4",
+        "question": "Synthetic arithmetic: 4 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "5",
+          "B": "6",
+          "C": "7",
+          "D": "8"
+        }
+      },
+      "cdss": null
+    },
+    {
+      "assignment_id": "SYN3-Q4",
+      "doctor_id": "SYN3",
+      "doctor_level": "senior",
+      "question_id": "4",
+      "difficulty": "synthetic",
+      "condition": "T1",
+      "stage_block": "cdss_advice",
+      "display_order": 4,
+      "block_order": 4,
+      "session_id": "SYN3-session",
+      "question": {
+        "question_id": "4",
+        "question": "Synthetic arithmetic: 4 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "5",
+          "B": "6",
+          "C": "7",
+          "D": "8"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "A",
+        "advice_text": "Synthetic suggestion: A"
+      }
+    },
+    {
+      "assignment_id": "SYN1-Q4",
+      "doctor_id": "SYN1",
+      "doctor_level": "senior",
+      "question_id": "4",
+      "difficulty": "synthetic",
+      "condition": "T2",
+      "stage_block": "cdss_advice",
+      "display_order": 4,
+      "block_order": 4,
+      "session_id": "SYN1-session",
+      "question": {
+        "question_id": "4",
+        "question": "Synthetic arithmetic: 4 + 1 = ?",
+        "difficulty": "synthetic",
+        "options": {
+          "A": "5",
+          "B": "6",
+          "C": "7",
+          "D": "8"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "B",
+        "advice_text": "Synthetic suggestion: B"
+      }
+    }
+  ]
+}
