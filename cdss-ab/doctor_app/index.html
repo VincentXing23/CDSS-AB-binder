@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CDSS Case Response System</title>
+    <link rel="stylesheet" href="styles.css?v=interactive-demo-1">
+  </head>
+  <body>
+    <section id="loginView" class="login-screen">
+      <form id="loginForm" class="login-card">
+        <div class="language-row"><button id="languageToggle" type="button" class="quiet" aria-label="Switch language">中文</button></div>
+        <p class="eyebrow" data-i18n="pilotLabel">Synthetic interactive demo</p>
+        <h1 data-i18n="appTitle">CDSS Case Response System</h1>
+        <div class="demo-notice"><strong>Try the doctor workflow</strong><p>Username: <code>doctor</code> · Password: <code>demo</code></p><p>For statistics and exports: <code>admin</code> / <code>demo</code></p><p>Three fictional anaemia questions with no advice, correct advice, and deliberately incorrect advice. Temporary synthetic session; no real patient data.</p></div>
+        <label>
+          <span data-i18n="username">Username</span>
+          <input id="usernameInput" name="username" value="doctor" autocomplete="username" required>
+        </label>
+        <label>
+          <span data-i18n="password">Password</span>
+          <input id="passwordInput" name="password" type="password" value="demo" autocomplete="current-password" required>
+        </label>
+        <p id="loginError" class="form-error" aria-live="polite"></p>
+        <button type="submit" data-i18n="login">Sign in</button>
+      </form>
+    </section>
+
+    <div id="appShell" class="app-shell hidden">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" data-i18n="pilotLabel">Synthetic interactive demo</p>
+          <h1 data-i18n="appTitle">CDSS Case Response System</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="languageToggleApp" type="button" class="quiet">中文</button>
+          <button id="logoutBtn" type="button" class="quiet" data-i18n="logout">Sign out</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar">
+          <section class="panel">
+            <h2 data-i18n="progress">Progress</h2>
+            <div class="meter">
+              <div id="progressBar" class="meter-fill"></div>
+            </div>
+            <dl class="stats">
+              <div>
+                <dt data-i18n="completed">Completed</dt>
+                <dd id="answeredCount">0 / 0</dd>
+              </div>
+              <div>
+                <dt data-i18n="saveStatus">Save status</dt>
+                <dd id="syncStatus" class="sync-status sync-status--idle">Synced</dd>
+              </div>
+            </dl>
+            <button id="retrySyncBtn" type="button" class="quiet sync-retry hidden" data-i18n="retrySync">Retry sync</button>
+          </section>
+
+          <section class="panel timer-panel" aria-live="polite">
+            <h2 data-i18n="timeRemaining">Time remaining</h2>
+            <strong id="timeRemaining" class="time-remaining">90:00</strong>
+            <p id="timerHint" class="admin-hint" data-i18n="timeLimitHint">The timer starts when you select Start.</p>
+          </section>
+
+          <section class="panel jump-panel">
+            <h2 data-i18n="jump">Jump to question</h2>
+            <form id="jumpForm" class="jump-form">
+              <label class="jump-label" for="jumpToInput" data-i18n="jumpTo">Jump to question</label>
+              <div class="jump-controls">
+                <input id="jumpToInput" type="number" min="1" step="1" inputmode="numeric" aria-label="Question number">
+                <span class="jump-suffix" data-i18n="questionSuffix"></span>
+                <button id="jumpToBtn" type="submit" data-i18n="jumpButton">Go</button>
+              </div>
+            </form>
+            <p id="jumpError" class="jump-error" aria-live="polite"></p>
+            <div id="questionNavGrid" class="question-nav-grid" aria-label="Question list"></div>
+          </section>
+        </aside>
+
+        <section class="answer-surface">
+          <div id="emptyState" class="empty-state">
+            <p class="eyebrow" data-i18n="waiting">Waiting to start</p>
+            <h2 data-i18n="noQuestions">No questions assigned</h2>
+          </div>
+
+          <article id="introView" class="intro-view hidden">
+            <p class="eyebrow" data-i18n="beforeYouStart">Before you start</p>
+            <h2 data-i18n="readBeforeStart">Read before starting</h2>
+            <p id="introText" data-i18n="introText">Explore three fictional anaemia questions: T0 has no advice, T1 has correct scripted advice, and T2 has deliberately incorrect scripted advice.</p>
+            <p data-i18n="introRule">Choose an answer, move between questions, and revise an answer to try the workflow. This synthetic example is for software demonstration, not clinical use.</p>
+            <p class="intro-note" data-i18n="introPrivacy">Use fictional responses only. This temporary session resets when the server stops. Sign in as admin / demo to inspect and export your responses.</p>
+            <div class="intro-actions">
+              <button id="startStudyBtn" type="button" data-i18n="start">Start</button>
+            </div>
+          </article>
+
+          <article id="completionView" class="completion-view hidden">
+            <p class="eyebrow" data-i18n="finished">Finished</p>
+            <h2 id="completionTitle" data-i18n="allFinished">You have completed all questions</h2>
+            <p id="completionSummary" class="completion-summary"></p>
+            <p class="completion-hint" data-i18n="completionHint">Review and revise your answers, or sign out and use admin / demo to inspect statistics and download your responses.</p>
+            <div class="completion-actions">
+              <button id="reviewAnswersBtn" type="button" class="quiet" data-i18n="review">Review answers</button>
+              <button id="completionLogoutBtn" type="button" data-i18n="logout">Sign out</button>
+            </div>
+          </article>
+
+          <article id="questionView" class="question-view hidden">
+            <div class="question-head">
+              <div>
+                <h2 id="questionTitle"></h2>
+              </div>
+            </div>
+
+            <p id="questionText" class="question-text"></p>
+
+            <div id="cdssPanel" class="cdss-panel hidden">
+              <p class="eyebrow" data-i18n="cdssAdvice">CDSS advice</p>
+              <p id="cdssAdvice"></p>
+            </div>
+
+            <fieldset class="options-field">
+              <legend data-i18n="chooseAnswer">Choose an answer</legend>
+              <div id="optionList" class="option-list"></div>
+            </fieldset>
+
+            <footer class="question-actions">
+              <button id="prevBtn" type="button" class="quiet" data-i18n="previous">Previous</button>
+              <button id="nextBtn" type="button" data-i18n="next">Next</button>
+            </footer>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div id="adminShell" class="admin-shell hidden">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" data-i18n="admin">Administration</p>
+          <h1 data-i18n="statistics">Response statistics</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="languageToggleAdmin" type="button" class="quiet">中文</button>
+          <button id="exportCsvBtn" type="button" class="quiet" data-i18n="exportCsv">Export responses CSV</button>
+          <button id="exportJsonlBtn" type="button" class="quiet" data-i18n="exportJsonl">Export responses JSONL</button>
+          <button id="downloadStatsBtn" type="button" class="quiet" data-i18n="downloadStats">Download statistics</button>
+          <button id="refreshAdminBtn" type="button" data-i18n="refresh">Refresh</button>
+          <button id="adminLogoutBtn" type="button" class="quiet" data-i18n="logout">Sign out</button>
+        </div>
+      </header>
+
+      <main class="admin-surface">
+        <section class="metric-grid">
+          <article class="metric-card">
+            <span data-i18n="completionRate">Completion rate</span>
+            <strong id="adminCompletionRate">-</strong>
+          </article>
+          <article class="metric-card">
+            <span data-i18n="overallAccuracy">Overall accuracy</span>
+            <strong id="adminAccuracy">-</strong>
+          </article>
+          <article class="metric-card">
+            <span>T1 - T0</span>
+            <strong id="adminT1Delta">-</strong>
+          </article>
+          <article class="metric-card">
+            <span>T2 - T0</span>
+            <strong id="adminT2Delta">-</strong>
+          </article>
+          <article class="metric-card">
+            <span data-i18n="t2CdssMatch">T2 CDSS match</span>
+            <strong id="adminT2Match">-</strong>
+          </article>
+        </section>
+
+        <section class="admin-grid">
+          <article class="admin-panel">
+            <h2 data-i18n="byCondition">By condition</h2>
+            <div id="conditionChart" class="bar-list"></div>
+          </article>
+          <article class="admin-panel">
+            <h2 data-i18n="byDoctor">By participant</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-i18n="doctor">Participant</th>
+                    <th data-i18n="responses">Responses</th>
+                    <th data-i18n="accuracy">Accuracy</th>
+                    <th data-i18n="matchRate">Match rate</th>
+                    <th data-i18n="avgMinTime">Mean / shortest time</th>
+                  </tr>
+                </thead>
+                <tbody id="doctorStatsBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="admin-panel">
+          <div class="record-manager-head">
+            <div>
+              <h2 data-i18n="responseManagement">Response records</h2>
+              <p id="adminRecordSummary" class="admin-hint" data-i18n="loading">Loading…</p>
+            </div>
+            <div class="record-manager-actions">
+              <input id="recordSearchInput" type="search" data-i18n-placeholder="searchPlaceholder" data-i18n-aria-label="searchResponses" placeholder="Search records, participants, order, or condition" aria-label="Search response records">
+              <button id="deleteAllResponsesBtn" type="button" class="danger" data-i18n="deleteAll">Delete all records</button>
+            </div>
+          </div>
+          <div class="table-wrap table-tall">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="recordId">Record ID</th>
+                  <th data-i18n="doctor">Participant</th>
+                  <th data-i18n="questionOrder">Question order</th>
+                  <th data-i18n="condition">Condition</th>
+                  <th data-i18n="answer">Answer</th>
+                  <th data-i18n="responseTime">Response time</th>
+                  <th data-i18n="savedAt">Saved at</th>
+                  <th data-i18n="operation">Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminResponsesBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-panel">
+          <h2 data-i18n="byQuestion">By question</h2>
+          <div class="table-wrap table-tall">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="question">Question</th>
+                  <th data-i18n="difficulty">Difficulty</th>
+                  <th data-i18n="completed">Completed</th>
+                  <th data-i18n="accuracy">Accuracy</th>
+                  <th>T0</th>
+                  <th>T1</th>
+                  <th>T2</th>
+                  <th data-i18n="t2Match">T2 match</th>
+                </tr>
+              </thead>
+              <tbody id="questionStatsBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js?v=interactive-demo-1"></script>
+  </body>
+</html>

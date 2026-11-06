@@ -1,92 +1,89 @@
-# CDSS-AB: synthetic reproducibility demo
+# CDSS-AB: interactive doctor demo
 
-Run a small, fully synthetic CDSS-AB analysis in a browser using Binder. The
-example contains four arithmetic questions, three fictional participants,
-12 responses and three answer revisions. It demonstrates the software's
-analysis and verification workflow. It does not reproduce clinical pilot results.
+[**Open the doctor interface in Binder**](https://mybinder.org/v2/gh/VincentXing23/CDSS-AB-binder/main?urlpath=cdss-demo/)
 
-## Run in Binder
+After Binder starts, the link opens the CDSS-AB interface directly. No notebook
+commands, API key, model download or GPU are needed.
 
-[**Launch the verified example in Binder**](https://mybinder.org/v2/gh/VincentXing23/CDSS-AB-binder/44bd860f7774ae440e859f1ac0feae7036120d13?urlpath=lab/tree/demo.ipynb)
+## Try the complete workflow
 
-Wait until the bottom status bar shows **Python 3 (ipykernel) | Idle**. Open
-`demo.ipynb` and choose **Run → Run All Cells**. The notebook runs the
-analysis twice, checks the results, displays the condition totals and offers a
-ZIP download. Expected results are **12 responses, 8 correct answers and
-3 answer revisions**: T0 = 2/4, T1 = 4/4, T2 = 2/4.
+1. Sign in with **doctor / demo** and select **Start**.
+2. Answer three short questions based on a fictional anaemia vignette. They
+   illustrate no advice, correct advice and deliberately incorrect advice.
+3. Revisit a question and change an answer, then finish the exercise.
+4. Sign out and sign in with **admin / demo**. Inspect completion, accuracy
+   and individual responses, then export results including revision counts.
 
-Binder provides temporary sessions. Download the ZIP before leaving; session
-files are not permanent storage. The initial image build can take several
-minutes. This demo needs no API key, model download or GPU.
+The login page also shows the demonstration credentials. This exercise uses
+synthetic cases and temporary responses. It is intended to demonstrate the
+software, not to assess clinical competence or establish a training effect.
+Each Binder session has its own files and accounts. Do not enter real patient
+information. Download exports before the temporary session ends.
 
-The launch URL is pinned to commit
-`44bd860f7774ae440e859f1ac0feae7036120d13`. It was successfully built and run on
-Binder on 2026-11-03 (UTC), with Python 3.12.12, NumPy 2.2.6 and SQLite 3.50.4
-on Linux x86_64. Both 22-file runs passed verification; the downloaded ZIP
-contained both runs plus their log (45 files), with matching expected totals.
-The pinned revision's README predates this online validation note; the analysis
-code, references, notebook and Binder configuration have not changed.
+The first image build can take several minutes. If a public Binder provider
+cannot start a session, use the local command below.
 
-## Run locally
+## Run the interface locally
 
-Use Python 3.12 and install the locked analysis dependency:
+Python 3.12 is sufficient for the interactive interface:
 
 ```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.lock
-.venv/bin/python cdss-ab/scripts/run_binder_demo.py --output-dir demo-results/run-001
+python cdss-ab/scripts/serve_interactive_demo.py --port 8765
 ```
 
-Choose a new output directory for every run. On Windows, use
-`.venv\Scripts\python` in place of `.venv/bin/python`.
+Open `http://127.0.0.1:8765/` and use the same demo accounts. The launcher creates
+its runtime files in a temporary directory. It binds to localhost; it does not
+create a public tunnel.
 
-## What is verified
+## Supplementary analysis notebook
 
-The Binder entry point uses a committed, reviewed reference. It never generates
-or replaces a reference at runtime.
+[Open the analysis notebook](https://mybinder.org/v2/gh/VincentXing23/CDSS-AB-binder/main?urlpath=lab/tree/demo.ipynb)
 
-- The input snapshot is unchanged and matches the original reference.
-- Two independent runs produce the same complete set of 22 files, with identical
-  SHA-256 hashes within the current environment.
-- Twenty platform-independent files also match the original reference hashes.
-- SQLite schema and all database content match a committed semantic reference;
-  database integrity, foreign keys and expected synthetic results are checked.
-- The manifest accounts for every output file with its actual hash and size,
-  and its provenance fields and analysis script identity are verified.
+The original `demo.ipynb` remains available. Choose **Run → Run All Cells** to run
+two analyses of a separate, fixed synthetic snapshot. Expected results are
+**12 responses, 8 correct answers and 3 answer revisions**: T0 = 2/4, T1 = 4/4,
+T2 = 2/4. Download the ZIP at the end.
 
-This is **cross-platform content verification**, not a claim that a Linux SQLite
-file has the same binary representation as the original macOS database.
-`reproduce.sh` retains the original strict verification of all 22 reference
-hashes for the documented reference environment.
+This fixed snapshot is separate from responses entered in the interactive
+exercise. Its four arithmetic questions and three fictional participants support
+automated reproduction checks, not clinical pilot results.
 
-The original reference was verified with CPython 3.12.14, NumPy 2.2.6 and
-SQLite 3.53.1 on macOS arm64. Binder selects Python 3.12 and pins NumPy 2.2.6.
-The Python patch version, SQLite build, Jupyter software and base operating
-system are supplied by Binder; the verification log records the actual runtime.
-The environment configuration is not a complete container image lock.
+For command-line analysis, install the pinned dependency and run:
 
-## Source and contents
+```sh
+python -m pip install -r requirements.lock
+python cdss-ab/scripts/run_binder_demo.py --output-dir demo-results/run-001
+```
 
-The three original analysis/verification scripts and synthetic inputs are copied
-unchanged from SAIRI-CDSS commit
-`149f7ad4e33f71ae3f5a6e95719b6430511664fd`. File hashes are recorded in
-`SOURCE-PROVENANCE.json`. This standalone package adds a Binder environment,
-notebook, portable verification entry point, reviewed semantic reference and
-failure-path tests.
+Use a new output directory for every run.
 
-Only the synthetic analysis example is included. The package contains no real
-participant responses, MedQA materials, credentials, collection server, paper
-drafts or upstream Git history. The software retains its MIT license.
+## Analysis verification
 
-## 中文使用说明
+The verifier checks both runs' complete set of 22 output files, 20 fixed
+platform-independent hashes, SQLite schema/content, expected totals and output
+manifest. SQLite content is compared across platforms; binary equality with the
+original macOS database is not assumed. The committed references are never
+regenerated during a demonstration.
 
-打开 `demo.ipynb`，点击 **Run → Run All Cells**，即可运行两轮合成数据分析并校验、
-查看分组结果、下载结果压缩包。预期为 12 条作答、8 条正确、3 次改答。
-进入后请等底部 Python 内核状态显示 Idle，再运行全部单元。
-Binder 会话是临时的，离开前请下载结果。该示例验证软件复现流程，不复现真实临床试点。
+Binder selects Python 3.12 and pins NumPy 2.2.6 and jupyter-server-proxy 4.6.0.
+Other Jupyter and operating-system components come from the Binder image.
+
+## Source and scope
+
+The software is derived from SAIRI-CDSS commit
+`149f7ad4e33f71ae3f5a6e95719b6430511664fd`. Original analysis scripts and synthetic
+snapshot files are preserved. The doctor interface and server are reused with
+small adaptations for a temporary demo: relative proxy paths, visible demo
+credentials and a synthetic clinical exercise. See `SOURCE-PROVENANCE.json` for
+original and adapted file hashes.
+
+This repository includes no real participant responses, MedQA case bank,
+private account configuration, manuscript drafts or upstream Git history.
+The software retains its MIT license. The example advice is prepared in advance;
+the demo does not call an AI model.
 
 ## Platform documentation
 
-- [Binder session limits](https://mybinder.readthedocs.io/en/latest/user-guidelines.html)
-- [Binder configuration location](https://repo2docker.readthedocs.io/en/latest/use/repository/)
-- [Opening a notebook directly](https://mybinder.readthedocs.io/en/latest/howto/user_interface.html)
+- [Binder user guidance](https://mybinder.readthedocs.io/en/latest/user-guidelines.html)
+- [Starting and proxying applications](https://jupyter-server-proxy.readthedocs.io/en/latest/server-process.html)
+- [Opening Binder interfaces directly](https://mybinder.readthedocs.io/en/latest/howto/user_interface.html)

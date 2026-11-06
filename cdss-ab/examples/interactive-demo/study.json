@@ -1,0 +1,95 @@
+{
+  "study_id": "synthetic-interactive-anaemia",
+  "batch_id": "synthetic-interactive-anaemia",
+  "source_dataset": "answer_source.csv",
+  "description": "Fictional software demonstration only. T2 advice is deliberately incorrect. No clinical pilot or participant data.",
+  "time_limit_seconds": 5400,
+  "doctors": [
+    {
+      "doctor_id": "DEMO",
+      "doctor_level": "synthetic"
+    }
+  ],
+  "design": {
+    "difficulty_counts": {
+      "synthetic": 3
+    }
+  },
+  "assignments": [
+    {
+      "assignment_id": "DEMO-Q1",
+      "doctor_id": "DEMO",
+      "doctor_level": "synthetic",
+      "question_id": "1",
+      "difficulty": "synthetic",
+      "condition": "T0",
+      "stage_block": "baseline",
+      "display_order": 1,
+      "block_order": 1,
+      "session_id": "DEMO-session",
+      "question": {
+        "question_id": "1",
+        "question": "A fictional adult has fatigue, haemoglobin 9.8 g/dL and mean corpuscular volume (MCV) 70 fL. How should the anaemia be classified?",
+        "options": {
+          "A": "Microcytic anaemia",
+          "B": "Normocytic anaemia",
+          "C": "Macrocytic anaemia",
+          "D": "No anaemia"
+        }
+      },
+      "cdss": null
+    },
+    {
+      "assignment_id": "DEMO-Q2",
+      "doctor_id": "DEMO",
+      "doctor_level": "synthetic",
+      "question_id": "2",
+      "difficulty": "synthetic",
+      "condition": "T1",
+      "stage_block": "cdss_advice",
+      "display_order": 2,
+      "block_order": 2,
+      "session_id": "DEMO-session",
+      "question": {
+        "question_id": "2",
+        "question": "The same fictional adult has serum ferritin 6 ng/mL. What does this finding indicate?",
+        "options": {
+          "A": "Iron overload",
+          "B": "Depleted iron stores",
+          "C": "Normal iron stores",
+          "D": "Vitamin B12 deficiency"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "B",
+        "advice_text": "Suggested answer: B \u2014 Depleted iron stores. A very low ferritin supports iron deficiency."
+      }
+    },
+    {
+      "assignment_id": "DEMO-Q3",
+      "doctor_id": "DEMO",
+      "doctor_level": "synthetic",
+      "question_id": "3",
+      "difficulty": "synthetic",
+      "condition": "T2",
+      "stage_block": "cdss_advice",
+      "display_order": 3,
+      "block_order": 3,
+      "session_id": "DEMO-session",
+      "question": {
+        "question_id": "3",
+        "question": "A fictional adult reports fatigue and heavy menstrual bleeding. Haemoglobin is 9.8 g/dL, MCV is 70 fL and ferritin is 6 ng/mL. Which diagnosis best explains these findings?",
+        "options": {
+          "A": "Iron-deficiency anaemia",
+          "B": "Thalassaemia trait alone",
+          "C": "Vitamin B12 deficiency",
+          "D": "Anaemia of chronic inflammation alone"
+        }
+      },
+      "cdss": {
+        "cdss_answer_idx": "B",
+        "advice_text": "Suggested answer: B \u2014 Thalassaemia trait alone. The low MCV is the main clue, so this is the most likely explanation."
+      }
+    }
+  ]
+}

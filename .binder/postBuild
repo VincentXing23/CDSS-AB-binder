@@ -1,4 +1,5 @@
 #!/bin/sh
 set -eu
 python -m pip check
+python .binder/configure_proxy.py
 python -m unittest discover -s tests -p 'test*.py'
